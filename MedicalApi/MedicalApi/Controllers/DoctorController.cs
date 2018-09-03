@@ -44,7 +44,7 @@ namespace MedicalApi.Controllers
         };
 
         [HttpGet]
-        [Route("id")]
+        [Route("{id}")]
         public Doctor GetDoctor(int id)
         {
             return Doctors.FirstOrDefault(x => x.Id == id && !x.IsRetired);

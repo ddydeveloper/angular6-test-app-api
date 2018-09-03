@@ -44,7 +44,7 @@ namespace MedicalApi.Controllers
         };
 
         [HttpGet]
-        [Route("id")]
+        [Route("{id}")]
         public Patient GetPatient(int id)
         {
             return Patients.FirstOrDefault(x => x.Id == id);
