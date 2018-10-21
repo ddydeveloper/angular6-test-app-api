@@ -2,11 +2,12 @@ sudo: required
 services:
   - docker
 script:
-  - docker build -t ddydeveloper.azurecr.io/angular6-test-api .
+  - docker build -t angular6-test-api .
 after_script:
   - docker images
 before_deploy:
   - docker login ddydeveloper.azurecr.io -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
+  - docker tag angular6-test-api ddydeveloper.azurecr.io/angular6-test-api
 deploy:
   provider: script
   script: docker push ddydeveloper.azurecr.io/angular6-test-api
