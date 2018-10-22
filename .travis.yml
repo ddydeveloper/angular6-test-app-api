@@ -1,8 +1,6 @@
 sudo: required
 services:
   - docker
-before_install:
-  - sudo snap install --classic heroku
 script:
   - docker build -t ddydeveloper/angular6-test-api .
 after_script:
