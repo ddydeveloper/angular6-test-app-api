@@ -2,14 +2,14 @@ sudo: required
 services:
   - docker
 script:
-  - docker build -t ddydeveloper/angular6-test-app .
+  - docker build -t ddydeveloper/angular6-test-api .
 after_script:
   - docker images
 before_deploy:
   - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
 deploy:
   provider: script
-  script: docker push ddydeveloper/angular6-test-app
+  script: docker push ddydeveloper/angular6-test-api
   on:
     branch: master
 after_success:
