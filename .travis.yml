@@ -2,21 +2,18 @@ sudo: required
 services:
   - docker
 script:
-  - docker build -t ddydeveloper/angular6-test-api .
+  - docker build -t ddydeveloper/angular6-test-app .
 after_script:
   - docker images
 before_deploy:
   - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
-  - docker login -u _ -p "$HEROKU_PASS" registry.heroku.com
-  - docker tag ddydeveloper/angular6-test-api registry.heroku.com/$HEROKU_APP/web
 deploy:
   provider: script
-  script:
-    docker push ddydeveloper/angular6-test-api;
-    docker push registry.heroku.com/$HEROKU_APP_NAME/web;
+  script: docker push ddydeveloper/angular6-test-app
+  on:
+    branch: master
+after_success:
+  — sh .travis/deploy_dockerhub.sh
+  — test "$TRAVIS_BRANCH" = "master" && sh .travis/deploy_heroku.sh
 email:
-    recipients:
-      - ddydeveloper@gmail.com
-    on_success: always
-    on_failure: always
-    
+  - ddydeveloper@gmail.com
