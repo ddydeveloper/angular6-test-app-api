@@ -6,7 +6,7 @@ script:
 after_script:
   - docker images
 before_deploy:
-  - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS" registry.heroku.com
+  - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
   - docker login -u _ -p "$HEROKU_PASS" registry.heroku.com
   - docker tag ddydeveloper/angular6-test-api registry.heroku.com/$HEROKU_APP/web
 deploy:
@@ -14,8 +14,6 @@ deploy:
   script:
     docker push ddydeveloper/angular6-test-api;
     docker push registry.heroku.com/$HEROKU_APP_NAME/web;
-  on:
-    branch: master
 email:
     recipients:
       - ddydeveloper@gmail.com
