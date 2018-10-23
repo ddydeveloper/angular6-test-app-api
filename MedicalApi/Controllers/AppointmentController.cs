@@ -14,7 +14,7 @@ namespace MedicalApi.Controllers
         {
             new Appointment
             {
-                Id = 0,
+                Id = 10,
                 UserId = 0,
                 PatientId = 0,
                 Date = DateTimeOffset.Now,
