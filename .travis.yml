@@ -9,14 +9,14 @@ before_install:
   - docker login -u _ --password=$HEROKU_API_KEY registry.heroku.com
 
 script:
-  - docker build -t registry.heroku.com/$HEROKU_APP_NAME/web .
-  # - docker tag ddydeveloper/angular6-test-api registry.heroku.com/$HEROKU_APP_NAME/web
+  - docker build -t ddydeveloper/angular6-test-api .
+  - docker tag ddydeveloper/angular6-test-api registry.heroku.com/$HEROKU_APP_NAME/web
 
 deploy:
   provider: script
   script:
-    # docker push ddydeveloper/angular6-test-api
-    docker push registry.heroku.com/$HEROKU_APP_NAME/web;
+    docker push ddydeveloper/angular6-test-api
+    docker push registry.heroku.com/$HEROKU_APP_NAME/web
   on:
     all_branches: true
   
