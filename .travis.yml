@@ -13,12 +13,17 @@ script:
   - docker tag ddydeveloper/angular6-test-api registry.heroku.com/$HEROKU_APP_NAME/web
 
 deploy:
-  provider: script
-  script:
-    docker push ddydeveloper/angular6-test-api
-    docker push registry.heroku.com/$HEROKU_APP_NAME/web;
-  on:
-    all_branches: true
-
+  - provider: script
+    script:
+      docker push ddydeveloper/angular6-test-api
+      docker push registry.heroku.com/$HEROKU_APP_NAME/web;
+    on:
+      all_branches: true
+  - provider: script
+    script:
+      docker push ddydeveloper/angular6-test-api
+    on:
+      all_branches: true
+      
 email:
   - ddydeveloper@gmail.com
