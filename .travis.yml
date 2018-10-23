@@ -15,8 +15,8 @@ script:
 deploy:
   provider: script
   script:
-    docker push ddydeveloper/angular6-test-api
-    # docker push registry.heroku.com/$HEROKU_APP_NAME/web;
+    # docker push ddydeveloper/angular6-test-api
+    docker push registry.heroku.com/$HEROKU_APP_NAME/web;
   on:
     all_branches: true
   
