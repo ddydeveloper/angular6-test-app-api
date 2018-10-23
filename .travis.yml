@@ -6,7 +6,7 @@ services:
 before_install:
   - wget -qO- https://toolbelt.heroku.com/install.sh | sh
   - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
-  - docker login -e _ -u _ --password=$HEROKU_API_KEY registry.heroku.com
+  - docker login -u _ --password=$HEROKU_API_KEY registry.heroku.com
 
 script:
   - docker build -t ddydeveloper/angular6-test-api .
@@ -16,7 +16,7 @@ deploy:
   provider: script
   script:
     docker push ddydeveloper/angular6-test-api
-    docker push registry.heroku.com/$HEROKU_APP_NAME/web;
+    docker push registry.heroku.com/$HEROKU_APP_NAME/web
 
 email:
   - ddydeveloper@gmail.com
