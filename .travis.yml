@@ -4,12 +4,17 @@ services:
 before_install:
   - docker login -u _ --password=$HEROKU_API_KEY registry.heroku.com
 script:
-  - docker build -t $HEROKU_APP_NAME .
-  - docker tag $HEROKU_APP_NAME registry.heroku.com/$HEROKU_APP_NAME/web
+  - docker build -t tempimage .
+  - docker tag tempimage registry.heroku.com/$HEROKU_APP_NAME/web
+  - docker tag tempimage registry.heroku.com/HEROKU_DEV_APP_NAME/web
 deploy:
-  provider: script
-  script: docker push registry.heroku.com/$HEROKU_APP_NAME/web
-  on:
-    all_branches: true
+  - provider: script
+    script: docker push registry.heroku.com/$HEROKU_APP_NAME/web
+    on:
+      branch: master
+  - provider: script
+    script: docker push registry.heroku.com/$HEROKU_DEV_APP_NAME/web
+    on:
+      branch: develop
 email:
   - ddydeveloper@gmail.com
