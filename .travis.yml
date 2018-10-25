@@ -1,25 +1,15 @@
 sudo: required
-
 services:
   - docker
-
 before_install:
-  - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
   - docker login -u _ --password=$HEROKU_API_KEY registry.heroku.com
-
 script:
-  - docker build -t ddydeveloper/angular6-test-api .
-  # - docker tag ddydeveloper/angular6-test-api registry.heroku.com/$HEROKU_APP_NAME/web
-
+  - docker build -t $HEROKU_APP_NAME
+  - docker tag $HEROKU_APP_NAME registry.heroku.com/$HEROKU_APP_NAME/web
 deploy:
-  - provider: script
-    script: docker push ddydeveloper/angular6-test-api
-    on:
-      all_branches: true
-  # - provider: script
-  #   script: docker push registry.heroku.com/$HEROKU_APP_NAME/web
-  #   on:
-  #     all_branches: true
-  
+  provider: script
+  script: docker push registry.heroku.com/$HEROKU_APP_NAME/web
+  on:
+    all_branches: true
 email:
   - ddydeveloper@gmail.com
