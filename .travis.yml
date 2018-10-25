@@ -8,9 +8,9 @@ before_install:
   - docker login -u _ --password=$HEROKU_API_KEY registry.heroku.com
 
 script:
-  - docker build -t tempimage .
-  - docker tag herokuimage registry.heroku.com/$HEROKU_APP_NAME/web
-  - docker tag herokuimage registry.heroku.com/$HEROKU_DEV_APP_NAME/web
+  - docker build -t herokuimage .
+  # - docker tag herokuimage registry.heroku.com/$HEROKU_APP_NAME/web
+  # - docker tag herokuimage registry.heroku.com/$HEROKU_DEV_APP_NAME/web
 
 deploy:
   - provider: script
