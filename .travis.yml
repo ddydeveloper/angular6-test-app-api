@@ -4,7 +4,7 @@ services:
 before_install:
   - docker login -u _ --password=$HEROKU_API_KEY registry.heroku.com
 script:
-  - docker build -t $HEROKU_APP_NAME
+  - docker build -t $HEROKU_APP_NAME .
   - docker tag $HEROKU_APP_NAME registry.heroku.com/$HEROKU_APP_NAME/web
 deploy:
   provider: script
