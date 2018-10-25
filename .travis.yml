@@ -9,8 +9,6 @@ before_install:
 
 script:
   - docker build -t herokuimage .
-  # - docker tag herokuimage registry.heroku.com/$HEROKU_APP_NAME/web
-  # - docker tag herokuimage registry.heroku.com/$HEROKU_DEV_APP_NAME/web
 
 deploy:
   - provider: script
